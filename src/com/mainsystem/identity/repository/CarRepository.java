@@ -8,35 +8,35 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mainsystem.identity.Customer;
+import com.mainsystem.identity.Car;
 @Repository
-public class CustomerRepository {
+public class CarRepository {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public CustomerRepository(){
+	public CarRepository(){
 		
 	}
 	@Transactional
-	public Customer insert(Customer customer){
-		em.persist(customer);
-		return customer;
+	public Car insert(Car Car){
+		em.persist(Car);
+		return Car;
 	}
 	
 	@Transactional
-	public Customer update(Customer customer){
-		em.merge(customer);
-		return customer;
+	public Car update(Car Car){
+		em.merge(Car);
+		return Car;
 	}
 	
-	public Customer findById(int id){
-		return em.find(Customer.class, id);
+	public Car findById(int id){
+		return em.find(Car.class, id);
 		
 	}
 	
 	public boolean removeById(int id){
-		Customer customer = em.find(Customer.class, id);
-		em.remove(customer);
+		Car Car = em.find(Car.class, id);
+		em.remove(Car);
 		return true;
 	}
 }
