@@ -35,6 +35,7 @@ public class RentWindow extends JFrame {
 		JButton btnBack = new JButton("");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 			}
 		});
 		btnBack.setIcon(new ImageIcon(RentWindow.class.getResource("/icons/back.png")));

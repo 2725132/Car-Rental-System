@@ -9,34 +9,51 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mainsystem.identity.Customer;
+import com.mainsystem.identity.exception.CustomerNotFoundException;
+
 @Repository
 public class CustomerRepository {
 	@PersistenceContext
 	private EntityManager em;
-	
-	public CustomerRepository(){
-		
+
+	public CustomerRepository() {
+
 	}
+
 	@Transactional
-	public Customer insert(Customer customer){
+	public Customer insert(Customer customer) {
 		em.persist(customer);
 		return customer;
 	}
-	
+
 	@Transactional
-	public Customer update(Customer customer){
+	public Customer update(Customer customer) {
 		em.merge(customer);
 		return customer;
 	}
-	
-	public Customer findById(int id){
+
+	public Customer findById(int id) {
 		return em.find(Customer.class, id);
-		
+
 	}
-	
-	public boolean removeById(int id){
-		Customer customer = em.find(Customer.class, id);
-		em.remove(customer);
+
+	@Transactional
+	public boolean removeById(int id) {
+		Customer customerToBeDeleted = em.find(Customer.class, id);
+		try {
+			validate(customerToBeDeleted);
+			em.remove(customerToBeDeleted);
+		} catch (CustomerNotFoundException e) {
+			e.printError();
+		}
+
 		return true;
+	}
+
+	public boolean validate(Customer customer) throws CustomerNotFoundException {
+		if (customer.getId() == 0) {
+			throw new CustomerNotFoundException();
+		} else
+			return true;
 	}
 }

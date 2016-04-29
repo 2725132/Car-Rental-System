@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.StyleContext.SmallAttributeSet;
+
+import com.mainsystem.identity.manage.CustomerActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -25,6 +28,7 @@ import java.awt.Window.Type;
 
 public class CustomerRegisterWindow extends JFrame {
 
+	CustomerActionListener cal;
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTextField txtState;
@@ -75,8 +79,7 @@ public class CustomerRegisterWindow extends JFrame {
 		btnSave.setIcon(new ImageIcon(CustomerRegisterWindow.class.getResource("/icons/savecustomer.png")));
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+			
 			}
 		});
 		btnSave.setBounds(83, 181, 51, 43);

@@ -34,6 +34,7 @@ public class CarRepository {
 		
 	}
 	
+	@Transactional
 	public boolean removeById(int id){
 		Car Car = em.find(Car.class, id);
 		em.remove(Car);

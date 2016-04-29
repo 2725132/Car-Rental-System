@@ -27,7 +27,10 @@ public class MainWindow extends JFrame {
 	private static RentWindow rw;
 	private JPanel contentPane;
 
-
+	public static void main(String[] args) {
+		MainWindow frame = new MainWindow();
+		
+	}
 	/**
 	 * Create the frame.
 	 */

@@ -1,5 +1,8 @@
 package com.mainsystem.identity.aggregate;
 
+import lombok.Data;
+
+@Data
 public abstract class Person {
 	private int id;
 	private String firstName;
