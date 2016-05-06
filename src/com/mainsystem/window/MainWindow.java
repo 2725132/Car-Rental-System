@@ -6,7 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
 import com.mainsystem.SystemManager;
+import com.mainsystem.identity.manage.CustomerActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -26,16 +29,16 @@ public class MainWindow extends JFrame {
 	private static CustomerRegisterWindow crw;
 	private static RentWindow rw;
 	private JPanel contentPane;
+	private CustomerActionListener cal;
 
 	public static void main(String[] args) {
+		//FileSystemXmlApplicationContext spring = new FileSystemXmlApplicationContext("application-context.xml");
 		MainWindow frame = new MainWindow();
-		
 	}
 	/**
 	 * Create the frame.
 	 */
 	public MainWindow() {
-		
 		crw = new CustomerRegisterWindow();
 		rw = new RentWindow();
 		

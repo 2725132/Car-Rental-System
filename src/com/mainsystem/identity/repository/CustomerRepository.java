@@ -26,7 +26,6 @@ public class CustomerRepository {
 		return customer;
 	}
 
-	@Transactional
 	public Customer update(Customer customer) {
 		em.merge(customer);
 		return customer;

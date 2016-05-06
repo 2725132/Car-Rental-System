@@ -10,6 +10,9 @@ import javax.swing.text.StyleContext.SmallAttributeSet;
 
 import com.mainsystem.identity.manage.CustomerActionListener;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -25,10 +28,11 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.Window.Type;
-
+@Getter @Setter
 public class CustomerRegisterWindow extends JFrame {
 
 	CustomerActionListener cal;
+	
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTextField txtState;
@@ -43,6 +47,8 @@ public class CustomerRegisterWindow extends JFrame {
 	
 
 	public CustomerRegisterWindow() {
+		cal = new CustomerActionListener(this);
+		
 		setType(Type.UTILITY);
 		setAlwaysOnTop(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CustomerRegisterWindow.class.getResource("/icons/main icon.png")));
@@ -79,7 +85,8 @@ public class CustomerRegisterWindow extends JFrame {
 		btnSave.setIcon(new ImageIcon(CustomerRegisterWindow.class.getResource("/icons/savecustomer.png")));
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				
+				cal.insertNewCustomer();
 			}
 		});
 		btnSave.setBounds(83, 181, 51, 43);
