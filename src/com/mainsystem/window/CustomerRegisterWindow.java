@@ -46,8 +46,8 @@ public class CustomerRegisterWindow extends JFrame {
 	
 	
 
-	public CustomerRegisterWindow() {
-		cal = new CustomerActionListener(this);
+	public CustomerRegisterWindow(CustomerActionListener cal) {
+		
 		
 		setType(Type.UTILITY);
 		setAlwaysOnTop(true);
@@ -85,7 +85,6 @@ public class CustomerRegisterWindow extends JFrame {
 		btnSave.setIcon(new ImageIcon(CustomerRegisterWindow.class.getResource("/icons/savecustomer.png")));
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				cal.insertNewCustomer();
 			}
 		});

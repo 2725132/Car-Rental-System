@@ -1,25 +1,28 @@
 package com.mainsystem.identity.manage;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import com.mainsystem.identity.Customer;
-import com.mainsystem.identity.exception.CustomerNotFoundException;
 import com.mainsystem.identity.repository.CustomerRepository;
 import com.mainsystem.window.CustomerRegisterWindow;
 
 public class CustomerActionListener {
 	CustomerRepository cr;
 	CustomerRegisterWindow crw;
-	
-	public CustomerActionListener(CustomerRegisterWindow crw) {
-		cr = new CustomerRepository();
+
+	public CustomerActionListener() {
+		init(this);
 	}
 
-	
-	public void init(){
+
+
+	public void init(CustomerActionListener cal){
+		crw = new CustomerRegisterWindow(cal);
+		crw.setVisible(true);
 		
 	}
+	public void setVisible(boolean b){
+		crw.setVisible(b);
+	}
+	
 	
 	public void insertNewCustomer() {
 		System.out.println("INSERIU");

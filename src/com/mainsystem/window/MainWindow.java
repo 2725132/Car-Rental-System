@@ -26,7 +26,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class MainWindow extends JFrame {
 	private static SystemManager sm;
-	private static CustomerRegisterWindow crw;
 	private static RentWindow rw;
 	private JPanel contentPane;
 	private CustomerActionListener cal;
@@ -38,9 +37,13 @@ public class MainWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	public void init(){
+		cal = new CustomerActionListener();
+				
+	}
 	public MainWindow() {
-		crw = new CustomerRegisterWindow();
-		rw = new RentWindow();
+		init();
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/icons/main icon.png")));
 		setForeground(Color.DARK_GRAY);
@@ -61,7 +64,7 @@ public class MainWindow extends JFrame {
 		btnNewClient.setFont(new Font("Verdana", Font.BOLD, 15));
 		btnNewClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				crw.setVisible(true);
+				cal.setVisible(true);
 			}
 		});
 		
