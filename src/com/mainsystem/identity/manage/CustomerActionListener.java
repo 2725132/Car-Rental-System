@@ -15,22 +15,34 @@ public class CustomerActionListener {
 
 
 	public void init(CustomerActionListener cal){
-		crw = new CustomerRegisterWindow(cal);
-		crw.setVisible(true);
-		
+		crw = new CustomerRegisterWindow();
 	}
+	
 	public void setVisible(boolean b){
 		crw.setVisible(b);
 	}
 	
+	public boolean validate(String data){
+		if(!"".equals(data)) return true;
+		return false;
+	}
 	
+	public Customer formToCustomer(){
+		Customer c = new Customer();
+		if(validate(crw.getTxtFirstName().getText())){
+			c.setFirstName(crw.getTxtFirstName().getText());
+		}
+		
+		return c;
+	}
 	public void insertNewCustomer() {
 		System.out.println("INSERIU");
 		
 		Customer customer = new Customer();
-		customer.setFirstName(crw.getTxtName().getText());
-		customer.setLastName(crw.getTxtLastName().getText());
-		customer.setCPF(crw.getTxtCPF().getText());
+		customer.setCPF("123");
+		//customer.setFirstName(crw.);
+		//customer.setLastName(crw.getTxtLastName().getText());
+		//customer.setCPF(crw.getTxtCPF().getText());
 		System.out.println(customer.toString());
 		//cr.insert(customer);
 	}

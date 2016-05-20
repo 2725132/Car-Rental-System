@@ -23,6 +23,7 @@ import java.awt.Component;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTabbedPane;
 
 public class MainWindow extends JFrame {
 	private static SystemManager sm;
@@ -40,6 +41,7 @@ public class MainWindow extends JFrame {
 	
 	public void init(){
 		cal = new CustomerActionListener();
+		//cal.setVisible(true);
 				
 	}
 	public MainWindow() {
@@ -59,10 +61,10 @@ public class MainWindow extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 444, 271);
 		
-		JButton btnNewClient = new JButton("New Customer");
-		btnNewClient.setForeground(new Color(0, 0, 0));
-		btnNewClient.setFont(new Font("Verdana", Font.BOLD, 15));
-		btnNewClient.addActionListener(new ActionListener() {
+		JButton btnCustomer = new JButton("Customer");
+		btnCustomer.setForeground(new Color(0, 0, 0));
+		btnCustomer.setFont(new Font("Verdana", Font.BOLD, 15));
+		btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cal.setVisible(true);
 			}
@@ -77,24 +79,35 @@ public class MainWindow extends JFrame {
 		contentPane.setLayout(null);
 		btnRent.setForeground(Color.BLACK);
 		btnRent.setFont(new Font("Verdana", Font.BOLD, 15));
+		
+		JButton btnEmployee = new JButton("Employee");
+		btnEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnEmployee.setFont(new Font("Verdana", Font.BOLD, 15));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(38)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnRent, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewClient))
-					.addContainerGap(243, Short.MAX_VALUE))
+					.addGap(24)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnRent, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnCustomer, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(50)
+					.addComponent(btnEmployee)
+					.addContainerGap(144, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(26)
-					.addComponent(btnNewClient)
-					.addGap(18)
-					.addComponent(btnRent, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(159, Short.MAX_VALUE))
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(28)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCustomer)
+						.addComponent(btnEmployee))
+					.addGap(32)
+					.addComponent(btnRent)
+					.addContainerGap(153, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		contentPane.add(panel);
