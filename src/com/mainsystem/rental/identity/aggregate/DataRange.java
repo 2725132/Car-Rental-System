@@ -1,5 +1,10 @@
 package com.mainsystem.rental.identity.aggregate;
 
-public class DataRange {
+import javax.persistence.Embeddable;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data @Embeddable @NoArgsConstructor
+public class DataRange{
 }

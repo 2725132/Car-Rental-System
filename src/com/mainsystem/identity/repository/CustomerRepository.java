@@ -1,5 +1,6 @@
 package com.mainsystem.identity.repository;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -13,11 +14,17 @@ import com.mainsystem.identity.exception.CustomerNotFoundException;
 
 @Repository
 public class CustomerRepository {
+	
 	@PersistenceContext
 	private EntityManager em;
 
 	public CustomerRepository() {
 
+	}
+	
+	@PostConstruct
+	public void init(){
+		System.out.println("Instanciado Customer Repository");
 	}
 
 	@Transactional
@@ -26,6 +33,7 @@ public class CustomerRepository {
 		return customer;
 	}
 
+	@Transactional
 	public Customer update(Customer customer) {
 		em.merge(customer);
 		return customer;
@@ -39,19 +47,16 @@ public class CustomerRepository {
 	@Transactional
 	public boolean removeById(int id) {
 		Customer customerToBeDeleted = em.find(Customer.class, id);
-		try {
-			validate(customerToBeDeleted);
+		if (validate(customerToBeDeleted)) {
 			em.remove(customerToBeDeleted);
-		} catch (CustomerNotFoundException e) {
-			e.printError();
-		}
-
-		return true;
+			return true;
+		} else
+			return false;
 	}
 
-	public boolean validate(Customer customer) throws CustomerNotFoundException {
+	public boolean validate(Customer customer) {
 		if (customer.getId() == 0) {
-			throw new CustomerNotFoundException();
+			return false;
 		} else
 			return true;
 	}

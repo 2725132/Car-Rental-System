@@ -32,7 +32,7 @@ public class MainWindow extends JFrame {
 	private CustomerActionListener cal;
 
 	public static void main(String[] args) {
-		//FileSystemXmlApplicationContext spring = new FileSystemXmlApplicationContext("application-context.xml");
+		FileSystemXmlApplicationContext spring = new FileSystemXmlApplicationContext("application-context.xml");
 		MainWindow frame = new MainWindow();
 	}
 	/**
