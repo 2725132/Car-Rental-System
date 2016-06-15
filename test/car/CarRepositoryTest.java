@@ -1,8 +1,11 @@
 package car;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import javax.validation.constraints.NotNull;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -10,7 +13,7 @@ import com.mainsystem.identity.Car;
 import com.mainsystem.identity.repository.CarRepository;
 
 import lombok.extern.log4j.Log4j;
-@Log4j
+@Log4j //@RunWith(JUnit4ClassRunner.class)
 public class CarRepositoryTest {
 	
 	static CarRepository cr;
@@ -36,8 +39,10 @@ public class CarRepositoryTest {
 	@Test
 	public void removeTest(){
 		Car carResult = cr.insert(car);
+		assertNotNull(car);
+		
 		boolean result = cr.removeById(carResult.getId());
-		AssertEquals(result, true);
+		assertEquals(true, result);
 		
 
 	}
@@ -47,21 +52,15 @@ public class CarRepositoryTest {
 		cr.update(car);
 	}
 	
+	@Test
 	public void findByIdTest(){
+		Car carResult = cr.insert(car);
+		assertNotNull(car);
 		
-		Car result = cr.findById(9);
-		System.out.println(result.toString());
+		Car result = cr.findById(carResult.getId());
+		assertNotNull(result);
+		
+		assertEquals(carResult.getId(), result.getId());
 	}
-	public static void main(String[] args) {
-		
-		CarRepositoryTest crt = new CarRepositoryTest();
-		//crt.insertTest();
-		crt.removeTest();
-		//crt.updateTest();
-		//crt.findByIdTest();
-		
-		
-		
-		
-	}
+
 }

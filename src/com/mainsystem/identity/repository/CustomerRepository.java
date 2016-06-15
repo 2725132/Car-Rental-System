@@ -1,10 +1,13 @@
 package com.mainsystem.identity.repository;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,9 +44,14 @@ public class CustomerRepository {
 
 	public Customer findById(int id) {
 		return em.find(Customer.class, id);
-
+	}
+	
+	public List<Customer> allCustomers(){
+		Query q = em.createQuery("select * from Customer c");
+		return q.getResultList();
 	}
 
+	
 	@Transactional
 	public boolean removeById(int id) {
 		Customer customerToBeDeleted = em.find(Customer.class, id);
@@ -55,7 +63,7 @@ public class CustomerRepository {
 	}
 
 	public boolean validate(Customer customer) {
-		if (customer.getId() == 0) {
+		if (customer == null) {
 			return false;
 		} else
 			return true;

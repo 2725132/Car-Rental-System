@@ -2,13 +2,18 @@ package com.mainsystem.identity.manage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.mainsystem.identity.Car;
 import com.mainsystem.identity.repository.CarRepository;
 
+@Service
 public class CarActionListener {
-	CarRepository cr;
 	
-
+	@Autowired
+	private CarRepository cr;
+	
 	public CarActionListener() {
 		cr = new CarRepository();
 	}

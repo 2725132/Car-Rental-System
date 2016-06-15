@@ -1,8 +1,5 @@
 package com.mainsystem.window;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,7 +9,7 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+@org.springframework.stereotype.Component
 public class RentWindow extends JFrame {
 
 	private JPanel contentPane;

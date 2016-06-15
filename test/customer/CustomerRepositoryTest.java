@@ -1,14 +1,17 @@
 package customer;
 
-import org.apache.commons.lang.Validate;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.mainsystem.identity.Car;
 import com.mainsystem.identity.Customer;
 import com.mainsystem.identity.aggregate.Adress;
 import com.mainsystem.identity.aggregate.Contact;
-import com.mainsystem.identity.aggregate.Person;
-import com.mainsystem.identity.repository.CarRepository;
 import com.mainsystem.identity.repository.CustomerRepository;
 
 public class CustomerRepositoryTest {
@@ -28,23 +31,27 @@ public class CustomerRepositoryTest {
 		
 	}
 	
-	
+	@Test
 	public void insertTest(){
 		Customer result = cr.insert(customer);
-		if (result == null) System.out.println("Resultado nulo");
-		else System.out.println(result.toString());
-		
+		assertNotNull(result);
+		assertNotEquals(0,result.getId());		
 	}
 	
+	@Test
 	public void removeByIdTest(){
-		if(cr.removeById(1)) System.out.println("Removido");
-		else System.out.println("ID inexistente");
+		assertNotNull(customer);
+		Customer result = cr.insert(customer);
+		assertNotNull(result);
+		assertEquals(true, cr.removeById(result.getId()));
 	}
 	
+	@Test
 	public void findByIdTest(){
-		Customer result = cr.findById(1);
-		if(result != null) System.out.println(result.toString());
-		else System.out.println("Resultado Nulo");
+		assertNotNull(customer);
+		Customer result = cr.insert(customer);
+		assertNotNull(result);
+		assertEquals(result, cr.findById(result.getId()));
 		
 	}
 	
@@ -52,13 +59,5 @@ public class CustomerRepositoryTest {
 		Customer result = cr.insert(customer);
 		result.setFirstName("Updated Name");
 		cr.update(result);
-	}
-	
-	public static void main(String[] args) {
-		CustomerRepositoryTest crt = new CustomerRepositoryTest();
-		//crt.insertTest();
-		//crt.findByIdTest();
-		//crt.removeByIdTest();
-		//crt.updateTest();
 	}
 }

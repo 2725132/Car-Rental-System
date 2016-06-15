@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mainsystem.identity.Car;
+import com.mainsystem.identity.Customer;
 
 import lombok.extern.log4j.Log4j;
 
@@ -47,10 +48,19 @@ public class CarRepository {
 	
 	@Transactional
 	public boolean removeById(int id){
-		Car Car = em.find(Car.class, id);
-		em.remove(Car);
-		return true;
+		Car carToBeDeleted = em.find(Car.class, id);
+		if (validate(carToBeDeleted)) {
+			em.remove(carToBeDeleted);
+			return true;
+		} else
+			return false;
 	}
 	
-
+	public boolean validate(Car car) {
+		if (car == null) {
+			return false;
+		} else
+			return true;
+	}
 }
+	
